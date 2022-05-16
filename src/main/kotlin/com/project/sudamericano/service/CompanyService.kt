@@ -1,0 +1,93 @@
+package com.project.sudamericano.service
+
+import com.project.sudamericano.model.Company
+import com.project.sudamericano.repository.CompanyRepository
+import com.project.sudamericano.repository.UserRepository
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
+import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
+
+@Service
+
+class CompanyService {
+
+    @Autowired
+    lateinit var companyRepository: CompanyRepository
+
+    @Autowired
+    lateinit var userRepository: UserRepository
+
+    fun list (): List<Company>{
+        return companyRepository.findAll()
+    }
+
+    fun getById (id:Long?): Company?{
+        return companyRepository.findById(id)
+    }
+
+    fun save(company: Company): Company{
+        try {
+            company.name?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El name no debe ser vacio")
+            company.status?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El status no debe ser vacio")
+            company.idUser?.takeIf { it > 0 }
+                ?: throw Exception("El idUser no debe ser menor a 0")
+            userRepository.findById(company.idUser)
+                ?: throw Exception("El id ${company.idUser} en user no existe")
+
+            return companyRepository.save(company)
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex)
+        }
+    }
+
+    fun update(company: Company): Company{
+        try {
+            companyRepository.findById(company.id)
+                ?: throw Exception("El id ${company.id} no existe en Sector")
+            company.name?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El name no debe ser vacio")
+            company.status?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El status no debe ser vacio")
+            company.idUser?.takeIf { it > 0 }
+                ?: throw Exception("El idUser no debe ser menor a 0")
+            userRepository.findById(company.idUser)
+                ?: throw Exception("El id ${company.idUser} no existe en User")
+            return companyRepository.save(company)
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex)
+        }
+    }
+
+    fun updateOne(company: Company): Company {
+        try {
+            companyRepository.findById(company.id)
+                ?: throw Exception("El id ${company.id} no existe en Sector")
+            company.name?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El name no debe ser vacio")
+            company.status?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El status no debe ser vacio")
+            company.idUser?.takeIf { it > 0 }
+                ?: throw Exception("El idUser no debe ser menor a 0")
+            userRepository.findById(company.idUser)
+                ?: throw Exception("El id ${company.idUser} no existe en User")
+
+            return companyRepository.save(company)
+        }
+        catch (ex:Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex)
+        }
+    }
+
+    fun delete (id:Long): Boolean{
+        companyRepository.deleteById(id)
+        return true
+    }
+}
