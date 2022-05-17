@@ -14,6 +14,7 @@ class Company {
     var id: Long? = null
     var name: String? = null
     var status: String? = null
-    var id_user: Long? = null
+    @Column(name = "id_user")
+    var idUser: Long? = null
 
 }

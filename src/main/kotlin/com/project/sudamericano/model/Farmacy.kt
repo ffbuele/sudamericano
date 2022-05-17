@@ -16,8 +16,11 @@ class Farmacy {
     var phone: String? = null
     var address: String? = null
     var status: String? = null
-    var id_user: Long? = null
-    var id_company: Long? = null
-    var id_sector: Long? = null
+    @Column(name = "id_user")
+    var idUser: Long? = null
+    @Column(name = "id_company")
+    var idCompany: Long? = null
+    @Column(name = "id_sector")
+    var idSector: Long? = null
 
 }

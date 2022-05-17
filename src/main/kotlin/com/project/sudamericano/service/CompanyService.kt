@@ -32,10 +32,10 @@ class CompanyService {
                 ?: throw Exception("El name no debe ser vacio")
             company.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            company.id_user?.takeIf { it > 0 }
-                ?: throw Exception("El id_user debe ser mayor a 0")
-            userRepository.findById(company.id_user)
-                ?: throw Exception("El id ${company.id_user} en user no existe")
+            company.idUser?.takeIf { it > 0 }
+                ?: throw Exception("El idUser debe ser mayor a 0")
+            userRepository.findById(company.idUser)
+                ?: throw Exception("El id ${company.idUser} en user no existe")
 
             return companyRepository.save(company)
         }
@@ -53,10 +53,10 @@ class CompanyService {
                 ?: throw Exception("El name no debe ser vacio")
             company.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            company.id_user?.takeIf { it > 0 }
-                ?: throw Exception("El id_user debe ser mayor a 0")
-            userRepository.findById(company.id_user)
-                ?: throw Exception("El id ${company.id_user} no existe en User")
+            company.idUser?.takeIf { it > 0 }
+                ?: throw Exception("El idUser debe ser mayor a 0")
+            userRepository.findById(company.idUser)
+                ?: throw Exception("El id ${company.idUser} no existe en User")
             return companyRepository.save(company)
         }
         catch (ex:Exception){
@@ -73,10 +73,10 @@ class CompanyService {
                 ?: throw Exception("El name no debe ser vacio")
             company.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            company.id_user?.takeIf { it > 0 }
+            company.idUser?.takeIf { it > 0 }
                 ?: throw Exception("El idUser debe ser mayor a 0")
-            userRepository.findById(company.id_user)
-                ?: throw Exception("El id ${company.id_user} no existe en User")
+            userRepository.findById(company.idUser)
+                ?: throw Exception("El id ${company.idUser} no existe en User")
 
             return companyRepository.save(company)
         }
