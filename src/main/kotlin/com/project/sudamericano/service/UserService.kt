@@ -73,7 +73,7 @@ class UserService {
     fun updateOne(user: User): User {
         try {
             userRepository.findById(user.id)
-                ?: throw Exception("El id ${user.id} en user no existe")
+                ?: throw Exception("El id ${user.id} no existe en user")
             user.name?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El name no debe ser vacio")
             user.last_name?.takeIf { it.trim().isNotEmpty() }
@@ -90,24 +90,24 @@ class UserService {
         }
         catch (ex: Exception) {
             throw ResponseStatusException(
-                HttpStatus.NOT_FOUND, ex.message, ex)
+                HttpStatus.NOT_FOUND, ex.message, ex
+            )
         }
-
-//        try {
-//            if (user.name.equals("")){
-//                throw Exception("name no puede ser vacio")
-//            }
-//            val response = userRepository.findById(user.id)
-//                ?: throw Exception("El id ${user.id} en user no existe")
-//            response.apply {
-//                this.name = user.name
-//            }
-//            return userRepository.save(user)
-//        }
     }
 
     fun delete (id:Long): Boolean{
-        userRepository.deleteById(id)
-        return true
+        try {
+            val response = userRepository.findById(id)
+                ?:throw Exception("El id ${id} en user no existe")
+            response.apply {
+                userRepository.deleteById(id)
+            }
+            return true
+        }
+        catch (ex: Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex
+            )
+        }
     }
 }

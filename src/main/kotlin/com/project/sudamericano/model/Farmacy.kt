@@ -16,8 +16,8 @@ class Farmacy {
     var phone: String? = null
     var address: String? = null
     var status: String? = null
-    var idUser: Long? = null
-    var idCompany: Long? = null
-    var idSector: Long? = null
+    var id_user: Long? = null
+    var id_company: Long? = null
+    var id_sector: Long? = null
 
 }

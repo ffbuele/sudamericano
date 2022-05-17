@@ -14,5 +14,5 @@ class Sector {
     var id: Long? = null
     var name: String? = null
     var status: String? = null
-    var idUser: Long? = null
+    var id_user: Long? = null
 }

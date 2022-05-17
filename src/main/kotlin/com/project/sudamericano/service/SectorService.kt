@@ -32,10 +32,10 @@ class SectorService {
                 ?: throw Exception("El name no debe ser vacio")
             sector.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            sector.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser no debe ser menor a 0")
-            userRepository.findById(sector.idUser)
-                ?: throw Exception("El id ${sector.idUser} en user no existe")
+            sector.id_user?.takeIf { it > 0 }
+                ?: throw Exception("El id_user debe ser mayor a 0")
+            userRepository.findById(sector.id_user)
+                ?: throw Exception("El id ${sector.id_user} no existe en user")
 
             return sectorRepository.save(sector)
         }
@@ -53,10 +53,10 @@ class SectorService {
                 ?: throw Exception("El name no debe ser vacio")
             sector.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            sector.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser no debe ser menor a 0")
-            userRepository.findById(sector.idUser)
-                ?: throw Exception("El id ${sector.idUser} no existe en User")
+            sector.id_user?.takeIf { it > 0 }
+                ?: throw Exception("El id_user debe ser mayor a 0")
+            userRepository.findById(sector.id_user)
+                ?: throw Exception("El id ${sector.id_user} no existe en User")
             return sectorRepository.save(sector)
         }
         catch (ex:Exception){
@@ -73,10 +73,10 @@ class SectorService {
                 ?: throw Exception("El name no debe ser vacio")
             sector.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            sector.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser no debe ser menor a 0")
-            userRepository.findById(sector.idUser)
-                ?: throw Exception("El id ${sector.idUser} no existe en User")
+            sector.id_user?.takeIf { it > 0 }
+                ?: throw Exception("El id_user debe ser mayor a 0")
+            userRepository.findById(sector.id_user)
+                ?: throw Exception("El id ${sector.id_user} no existe en User")
             return sectorRepository.save(sector)
         }
         catch (ex:Exception){
@@ -86,7 +86,18 @@ class SectorService {
     }
 
     fun delete (id:Long): Boolean{
-        sectorRepository.deleteById(id)
-        return true
+        try {
+            val response = sectorRepository.findById(id)
+                ?:throw Exception("El id ${id} no existe en sector")
+            response.apply {
+                sectorRepository.deleteById(id)
+            }
+            return true
+        }
+        catch (ex: Exception){
+            throw ResponseStatusException(
+                HttpStatus.NOT_FOUND, ex.message, ex
+            )
+        }
     }
 }
