@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
+import javax.persistence.Id
 
 @Service
-
 class UserService {
 
     @Autowired
@@ -95,13 +95,12 @@ class UserService {
         }
     }
 
-    fun delete (id:Long): Boolean{
+    fun delete(id: Long): Boolean{
         try {
-            val response = userRepository.findById(id)
-                ?:throw Exception("El id ${id} en user no existe")
-            response.apply {
-                userRepository.deleteById(id)
-            }
+            userRepository.findById(id)
+                ?: throw Exception("El id ${id} no existe en user")
+            userRepository.deleteById(id)
+
             return true
         }
         catch (ex: Exception){

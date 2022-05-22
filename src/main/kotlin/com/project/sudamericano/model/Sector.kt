@@ -14,6 +14,4 @@ class Sector {
     var id: Long? = null
     var name: String? = null
     var status: String? = null
-    @Column(name = "id_user")
-    var idUser: Long? = null
 }

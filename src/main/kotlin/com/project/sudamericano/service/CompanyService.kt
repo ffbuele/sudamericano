@@ -32,11 +32,6 @@ class CompanyService {
                 ?: throw Exception("El name no debe ser vacio")
             company.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            company.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser debe ser mayor a 0")
-            userRepository.findById(company.idUser)
-                ?: throw Exception("El id ${company.idUser} en user no existe")
-
             return companyRepository.save(company)
         }
         catch (ex:Exception){
@@ -53,10 +48,6 @@ class CompanyService {
                 ?: throw Exception("El name no debe ser vacio")
             company.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            company.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser debe ser mayor a 0")
-            userRepository.findById(company.idUser)
-                ?: throw Exception("El id ${company.idUser} no existe en User")
             return companyRepository.save(company)
         }
         catch (ex:Exception){
@@ -73,11 +64,6 @@ class CompanyService {
                 ?: throw Exception("El name no debe ser vacio")
             company.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            company.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser debe ser mayor a 0")
-            userRepository.findById(company.idUser)
-                ?: throw Exception("El id ${company.idUser} no existe en User")
-
             return companyRepository.save(company)
         }
         catch (ex:Exception){

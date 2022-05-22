@@ -44,14 +44,10 @@ class FarmacyService {
                 ?: throw Exception("El address no debe ser vacio")
             farmacy.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            farmacy.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser debe ser mayor a 0")
             farmacy.idCompany?.takeIf { it > 0 }
                 ?: throw Exception("El diCompany debe ser mayor a 0")
             farmacy.idSector?.takeIf { it > 0 }
                 ?: throw Exception("El idSector debe ser mayor a 0")
-            userRepository.findById(farmacy.idUser)
-                ?: throw Exception("El id ${farmacy.idUser} no existe en User")
             companyyRepository.findById(farmacy.idCompany)
                 ?: throw Exception("El id ${farmacy.idCompany} no existe en Company")
             sectorRepository.findById(farmacy.idSector)
@@ -77,14 +73,10 @@ class FarmacyService {
                 ?: throw Exception("El address no debe ser vacio")
             farmacy.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            farmacy.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser debe ser mayor a 0")
             farmacy.idCompany?.takeIf { it > 0 }
                 ?: throw Exception("El diCompany debe ser mayor a 0")
             farmacy.idSector?.takeIf { it > 0 }
                 ?: throw Exception("El idSector debe ser mayor a 0")
-            userRepository.findById(farmacy.idUser)
-                ?: throw Exception("El id ${farmacy.idUser} no existe en User")
             companyyRepository.findById(farmacy.idCompany)
                 ?: throw Exception("El id ${farmacy.idCompany} no existe en Company")
             sectorRepository.findById(farmacy.idSector)
@@ -109,14 +101,10 @@ class FarmacyService {
                 ?: throw Exception("El address no debe ser vacio")
             farmacy.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            farmacy.idUser?.takeIf { it > 0 }
-                ?: throw Exception("El idUser debe ser mayor a 0")
             farmacy.idCompany?.takeIf { it > 0 }
                 ?: throw Exception("El diCompany debe ser mayor a 0")
             farmacy.idSector?.takeIf { it > 0 }
                 ?: throw Exception("El idSector debe ser mayor a 0")
-            userRepository.findById(farmacy.idUser)
-                ?: throw Exception("El id ${farmacy.idUser} no existe en User")
             companyyRepository.findById(farmacy.idCompany)
                 ?: throw Exception("El id ${farmacy.idCompany} no existe en Company")
             sectorRepository.findById(farmacy.idSector)

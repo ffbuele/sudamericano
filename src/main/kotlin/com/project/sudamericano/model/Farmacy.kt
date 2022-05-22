@@ -16,8 +16,6 @@ class Farmacy {
     var phone: String? = null
     var address: String? = null
     var status: String? = null
-    @Column(name = "id_user")
-    var idUser: Long? = null
     @Column(name = "id_company")
     var idCompany: Long? = null
     @Column(name = "id_sector")

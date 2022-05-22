@@ -14,10 +14,8 @@ CREATE TABLE IF NOT EXISTS sector (
     id SERIAL,
     name VARCHAR (100) NOT NULL,
     status VARCHAR (100) NOT NULL,
-    id_user int,
 
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_user) REFERENCES users(id)
+    PRIMARY KEY (id)
 );
 
 
@@ -25,10 +23,8 @@ CREATE TABLE IF NOT EXISTS company (
     id SERIAL,
     name VARCHAR (100) NOT NULL,
     status VARCHAR (100) NOT NULL,
-    id_user int,
-
-    PRIMARY KEY (id),
-    FOREIGN KEY (id_user) REFERENCES users(id)
+    
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS farmacy(
@@ -37,12 +33,10 @@ CREATE TABLE IF NOT EXISTS farmacy(
     phone VARCHAR (100) NOT NULL,
     address VARCHAR (100) NOT NULL,
     status VARCHAR (100) NOT NULL,
-    id_user int,
     id_company int,
     id_sector int,
 
     PRIMARY KEY (id),
-    FOREIGN KEY (id_user) REFERENCES users(id),
     FOREIGN KEY (id_company) REFERENCES company(id),
     FOREIGN KEY (id_sector) REFERENCES sector(id)
 );
