@@ -1,6 +1,7 @@
 package com.project.sudamericano.controller
 
 import com.project.sudamericano.model.Company
+import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.service.CompanyService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -20,6 +21,11 @@ class CompanyController {
     @GetMapping("/id")
     fun listById(@PathVariable("id") id:Long): Company?{
         return companyService.getById(id)
+    }
+
+    @GetMapping("/name/{name}")
+    fun listByName (@PathVariable("name") name: String): List<Company>?{
+        return companyService.getByName(name)
     }
 
     @PostMapping

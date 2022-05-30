@@ -1,5 +1,6 @@
 package com.project.sudamericano.controller
 
+import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.User
 import com.project.sudamericano.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,6 +21,11 @@ class UserController {
     @GetMapping("/id")
     fun listById(@PathVariable("id") id:Long): User?{
         return userService.getById(id)
+    }
+
+    @GetMapping("/name/{name}")
+    fun listByName (@PathVariable("name") name: String): List<User>?{
+        return userService.getByName(name)
     }
 
     @PostMapping

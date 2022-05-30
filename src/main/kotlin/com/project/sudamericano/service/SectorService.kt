@@ -1,5 +1,6 @@
 package com.project.sudamericano.service
 
+import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.Sector
 import com.project.sudamericano.repository.SectorRepository
 import com.project.sudamericano.repository.UserRepository
@@ -24,6 +25,10 @@ class SectorService {
 
     fun getById (id:Long?): Sector?{
         return sectorRepository.findById(id)
+    }
+
+    fun getByName (name: String?):List<Sector>?{
+        return sectorRepository.getListName (name)
     }
 
     fun save(sector: Sector): Sector{

@@ -1,6 +1,7 @@
 package com.project.sudamericano.service
 
 import com.project.sudamericano.model.Company
+import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.repository.CompanyRepository
 import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,6 +25,10 @@ class CompanyService {
 
     fun getById (id:Long?): Company?{
         return companyRepository.findById(id)
+    }
+
+    fun getByName (name: String?):List<Company>?{
+        return companyRepository.getListName (name)
     }
 
     fun save(company: Company): Company{

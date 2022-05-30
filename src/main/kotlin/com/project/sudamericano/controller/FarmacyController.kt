@@ -23,6 +23,11 @@ class FarmacyController {
         return farmacyService.getById(id)
     }
 
+    @GetMapping("/name/{name}")
+    fun listByName (@PathVariable("name") name: String): List<Farmacy>?{
+        return farmacyService.getByName(name)
+    }
+
     @PostMapping
     fun save (@RequestBody farmacy: Farmacy): Farmacy {
         return farmacyService.save(farmacy)

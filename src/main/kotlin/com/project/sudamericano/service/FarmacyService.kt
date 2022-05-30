@@ -34,6 +34,10 @@ class FarmacyService {
         return farmacyRepository  .findById(id)
     }
 
+    fun getByName (name: String?):List<Farmacy>?{
+        return farmacyRepository.getListName (name)
+    }
+
     fun save(farmacy: Farmacy): Farmacy {
         try {
             farmacy.name?.takeIf { it.trim().isNotEmpty() }

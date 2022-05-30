@@ -1,12 +1,12 @@
 package com.project.sudamericano.service
 
+import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.User
 import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.web.server.ResponseStatusException
-import javax.persistence.Id
 
 @Service
 class UserService {
@@ -20,6 +20,10 @@ class UserService {
 
     fun getById (id:Long?): User?{
         return userRepository.findById(id)
+    }
+
+    fun getByName (name: String?):List<User>?{
+        return userRepository.getListName (name)
     }
 
     fun save(user: User): User{
