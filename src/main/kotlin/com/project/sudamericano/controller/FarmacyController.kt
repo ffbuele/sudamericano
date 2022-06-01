@@ -1,5 +1,6 @@
 package com.project.sudamericano.controller
 
+import com.project.sudamericano.dto.farmacyDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.service.FarmacyService
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,6 +32,11 @@ class FarmacyController {
     @PostMapping
     fun save (@RequestBody farmacy: Farmacy): Farmacy {
         return farmacyService.save(farmacy)
+    }
+
+    @PostMapping("/change/name")
+    fun updateOtherName (@RequestBody farmacyDto: farmacyDto): String?{
+        return farmacyService.updateOtherName(farmacyDto)
     }
 
     @PutMapping

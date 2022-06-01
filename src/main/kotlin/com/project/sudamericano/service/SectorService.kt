@@ -1,5 +1,7 @@
 package com.project.sudamericano.service
 
+import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.sectorDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.Sector
 import com.project.sudamericano.repository.SectorRepository
@@ -7,6 +9,7 @@ import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.server.ResponseStatusException
 
 @Service
@@ -77,6 +80,12 @@ class SectorService {
                 HttpStatus.NOT_FOUND, ex.message, ex)
         }
     }
+
+//    @Transactional
+//    fun updateOtherName (sectorDto: sectorDto): String?{
+//        val rowsUpdate = sectorRepository.setOtherName(sectorDto.name, sectorDto.newName)
+//        return "${rowsUpdate} rows updated"
+//    }
 
     fun delete (id: Long): Boolean{
         try {

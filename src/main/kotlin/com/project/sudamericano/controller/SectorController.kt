@@ -1,5 +1,7 @@
 package com.project.sudamericano.controller
 
+import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.sectorDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.Sector
 import com.project.sudamericano.service.SectorService
@@ -32,6 +34,11 @@ class SectorController {
     fun save (@RequestBody sector: Sector): Sector{
         return sectorService.save(sector)
     }
+
+//    @PostMapping("/change/name")
+//    fun updateOtherName (@RequestBody sectorDto: sectorDto): String?{
+//        return sectorService.updateOtherName(sectorDto)
+//    }
 
     @PutMapping
     fun update (@RequestBody sector: Sector): Sector{

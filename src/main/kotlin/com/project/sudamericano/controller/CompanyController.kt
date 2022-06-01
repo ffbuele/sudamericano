@@ -1,5 +1,7 @@
 package com.project.sudamericano.controller
 
+import com.project.sudamericano.dto.companyDto
+import com.project.sudamericano.dto.farmacyDto
 import com.project.sudamericano.model.Company
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.service.CompanyService
@@ -32,6 +34,11 @@ class CompanyController {
     fun save (@RequestBody company: Company): Company{
         return companyService.save(company)
     }
+
+//    @PostMapping("/change/name")
+//    fun updateOtherName (@RequestBody companyDto: companyDto): String?{
+//        return companyService.updateOtherName(companyDto)
+//    }
 
     @PutMapping
     fun update (@RequestBody company: Company): Company{

@@ -1,5 +1,6 @@
 package com.project.sudamericano.service
 
+import com.project.sudamericano.dto.farmacyDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.repository.CompanyRepository
 import com.project.sudamericano.repository.FarmacyRepository
@@ -8,6 +9,7 @@ import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.server.ResponseStatusException
 
 @Service
@@ -119,6 +121,12 @@ class FarmacyService {
             throw ResponseStatusException(
                 HttpStatus.NOT_FOUND, ex.message, ex)
         }
+    }
+
+    @Transactional
+    fun updateOtherName (farmacyDto: farmacyDto): String?{
+        val rowsUpdate=farmacyRepository.setOtherName(farmacyDto.name, farmacyDto.newName)
+        return "${rowsUpdate} rows updated"
     }
 
     fun delete (id:Long): Boolean{

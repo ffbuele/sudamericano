@@ -1,5 +1,7 @@
 package com.project.sudamericano.service
 
+import com.project.sudamericano.dto.companyDto
+import com.project.sudamericano.dto.farmacyDto
 import com.project.sudamericano.model.Company
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.repository.CompanyRepository
@@ -7,6 +9,7 @@ import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.server.ResponseStatusException
 
 @Service
@@ -76,6 +79,12 @@ class CompanyService {
                 HttpStatus.NOT_FOUND, ex.message, ex)
         }
     }
+
+//    @Transactional
+//    fun updateOtherName (companyDto: companyDto): String? {
+//        val rowsUpdate = companyRepository.setOtherName(companyDto.name, companyDto.newName)
+//        return "${rowsUpdate} rows updated"
+//    }
 
     fun delete (id:Long): Boolean{
         try {

@@ -1,11 +1,14 @@
 package com.project.sudamericano.service
 
+import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.userDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.User
 import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.server.ResponseStatusException
 
 @Service
@@ -22,8 +25,14 @@ class UserService {
         return userRepository.findById(id)
     }
 
+/*
     fun getByName (name: String?):List<User>?{
         return userRepository.getListName (name)
+    }
+*/
+
+    fun getByEmail (email: String?):List<User>?{
+        return userRepository.getListEmail (email)
     }
 
     fun save(user: User): User{
@@ -98,6 +107,12 @@ class UserService {
             )
         }
     }
+
+//    @Transactional
+//    fun updateOtherEmail (userDto: userDto): String?{
+//        val rowsUpdate = userRepository.setOtherEmail(userDto.email, userDto.newEmail)
+//        return "${rowsUpdate} rows updated"
+//    }
 
     fun delete(id: Long): Boolean{
         try {

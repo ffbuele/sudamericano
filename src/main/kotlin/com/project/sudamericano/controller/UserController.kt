@@ -1,5 +1,7 @@
 package com.project.sudamericano.controller
 
+import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.userDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.model.User
 import com.project.sudamericano.service.UserService
@@ -23,15 +25,25 @@ class UserController {
         return userService.getById(id)
     }
 
-    @GetMapping("/name/{name}")
+/*    @GetMapping("/name/{name}")
     fun listByName (@PathVariable("name") name: String): List<User>?{
         return userService.getByName(name)
+    }*/
+
+    @GetMapping("/email/{email}")
+    fun listByEmail (@PathVariable("email") email: String): List<User>?{
+        return userService.getByEmail(email)
     }
 
     @PostMapping
     fun save (@RequestBody user: User): User{
         return userService.save(user)
     }
+
+//    @PostMapping("/change/email")
+//    fun updateOtherEmail (@RequestBody userDto: userDto): String?{
+//        return userService.updateOtherEmail (userDto)
+//    }
 
     @PutMapping
     fun update (@RequestBody user: User): User{
