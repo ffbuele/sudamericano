@@ -35,10 +35,10 @@ class CompanyController {
         return companyService.save(company)
     }
 
-//    @PostMapping("/change/name")
-//    fun updateOtherName (@RequestBody companyDto: companyDto): String?{
-//        return companyService.updateOtherName(companyDto)
-//    }
+    @PostMapping("/change/name")
+    fun updateOtherName (@RequestBody companyDto: companyDto): String?{
+        return companyService.updateOtherName(companyDto)
+    }
 
     @PutMapping
     fun update (@RequestBody company: Company): Company{

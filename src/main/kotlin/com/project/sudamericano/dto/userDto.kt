@@ -1,6 +1,6 @@
 package com.project.sudamericano.dto
 
 class userDto {
-    var email:  String?=null
-    var newEmail: String?=null
+    var status:  String?=null
+    var newStatus: String?=null
 }

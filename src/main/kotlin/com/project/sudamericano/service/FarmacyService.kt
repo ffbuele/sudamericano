@@ -129,13 +129,12 @@ class FarmacyService {
         return "${rowsUpdate} rows updated"
     }
 
-    fun delete (id:Long): Boolean{
+    fun delete(id: Long): Boolean{
         try {
-            val response = farmacyRepository.findById(id)
-                ?:throw Exception("El id ${id} no existe en farmacy")
-            response.apply {
-                farmacyRepository.deleteById(id)
-            }
+            farmacyRepository.findById(id)
+                ?: throw Exception("El id ${id} no existe en user")
+            farmacyRepository.deleteById(id)
+
             return true
         }
         catch (ex: Exception){

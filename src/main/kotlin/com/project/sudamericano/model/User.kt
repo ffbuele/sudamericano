@@ -18,4 +18,5 @@ class User {
     var email: String? = null
     var password: String? = null
     var status: String? = null
+    var username: String? = null
 }

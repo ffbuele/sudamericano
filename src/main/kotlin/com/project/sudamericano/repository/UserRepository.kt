@@ -17,5 +17,5 @@ interface UserRepository: JpaRepository<User, Long> {
 
     @Modifying
     @Query(nativeQuery=true)
-    fun setOtherEmail (@Param("email")  email:String?, @Param("newEmail")  newEmail:String?) : Integer?
+    fun setOtherStatus (@Param("status")  status:String?, @Param("newStatus")  newStatus:String?) : Integer?
 }

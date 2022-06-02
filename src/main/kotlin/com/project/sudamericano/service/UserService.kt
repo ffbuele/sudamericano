@@ -49,6 +49,8 @@ class UserService {
                 ?: throw Exception("El password no debe ser vacio")
             user.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
+            user.username?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El username no debe ser vacio")
             return userRepository.save(user)
         }
         catch (ex:Exception){
@@ -73,6 +75,8 @@ class UserService {
                 ?: throw Exception("El password no debe ser vacio")
             user.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
+            user.username?.takeIf { it.trim().isNotEmpty() }
+                    ?: throw Exception("El status no debe ser vacio")
 //            userRepository.findById(user.id)
 //                ?: throw Exception("El id ${user.id} en user no existe");
             return userRepository.save(user)
@@ -99,6 +103,8 @@ class UserService {
                 ?: throw Exception("El password no debe ser vacio")
             user.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
+            user.username?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El status no debe ser vacio")
             return userRepository.save(user)
         }
         catch (ex: Exception) {
@@ -108,11 +114,11 @@ class UserService {
         }
     }
 
-//    @Transactional
-//    fun updateOtherEmail (userDto: userDto): String?{
-//        val rowsUpdate = userRepository.setOtherEmail(userDto.email, userDto.newEmail)
-//        return "${rowsUpdate} rows updated"
-//    }
+    @Transactional
+    fun updateOtherStatus (userDto: userDto): String?{
+        val rowsUpdate = userRepository.setOtherStatus(userDto.status, userDto.newStatus)
+        return "${rowsUpdate} rows updated"
+    }
 
     fun delete(id: Long): Boolean{
         try {

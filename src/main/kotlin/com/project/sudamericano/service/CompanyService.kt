@@ -80,19 +80,18 @@ class CompanyService {
         }
     }
 
-//    @Transactional
-//    fun updateOtherName (companyDto: companyDto): String? {
-//        val rowsUpdate = companyRepository.setOtherName(companyDto.name, companyDto.newName)
-//        return "${rowsUpdate} rows updated"
-//    }
+    @Transactional
+    fun updateOtherName (companyDto: companyDto): String? {
+        val rowsUpdate = companyRepository.setOtherName(companyDto.name, companyDto.newName)
+        return "${rowsUpdate} rows updated"
+    }
 
-    fun delete (id:Long): Boolean{
+    fun delete(id: Long): Boolean{
         try {
-            val response = companyRepository.findById(id)
-                ?:throw Exception("El id ${id} no existe en company")
-            response.apply {
-                companyRepository.deleteById(id)
-            }
+            companyRepository.findById(id)
+                ?: throw Exception("El id ${id} no existe en user")
+            companyRepository.deleteById(id)
+
             return true
         }
         catch (ex: Exception){

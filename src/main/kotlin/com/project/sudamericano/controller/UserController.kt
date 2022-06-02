@@ -40,10 +40,10 @@ class UserController {
         return userService.save(user)
     }
 
-//    @PostMapping("/change/email")
-//    fun updateOtherEmail (@RequestBody userDto: userDto): String?{
-//        return userService.updateOtherEmail (userDto)
-//    }
+    @PostMapping("/change/status")
+    fun updateOtherStatus (@RequestBody userDto: userDto): String?{
+        return userService.updateOtherStatus (userDto)
+    }
 
     @PutMapping
     fun update (@RequestBody user: User): User{

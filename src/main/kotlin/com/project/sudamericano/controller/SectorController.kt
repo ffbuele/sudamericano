@@ -35,10 +35,10 @@ class SectorController {
         return sectorService.save(sector)
     }
 
-//    @PostMapping("/change/name")
-//    fun updateOtherName (@RequestBody sectorDto: sectorDto): String?{
-//        return sectorService.updateOtherName(sectorDto)
-//    }
+    @PostMapping("/change/name")
+    fun updateOtherName (@RequestBody sectorDto: sectorDto): String?{
+        return sectorService.updateOtherName(sectorDto)
+    }
 
     @PutMapping
     fun update (@RequestBody sector: Sector): Sector{

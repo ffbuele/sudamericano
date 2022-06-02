@@ -81,19 +81,18 @@ class SectorService {
         }
     }
 
-//    @Transactional
-//    fun updateOtherName (sectorDto: sectorDto): String?{
-//        val rowsUpdate = sectorRepository.setOtherName(sectorDto.name, sectorDto.newName)
-//        return "${rowsUpdate} rows updated"
-//    }
+    @Transactional
+    fun updateOtherName (sectorDto: sectorDto): String?{
+        val rowsUpdate = sectorRepository.setOtherName(sectorDto.name, sectorDto.newName)
+        return "${rowsUpdate} rows updated"
+    }
 
-    fun delete (id: Long): Boolean{
+    fun delete(id: Long): Boolean{
         try {
-            val response = sectorRepository.findById(id)
-                ?: throw Exception("El id ${id} no existe en sector")
-            response.apply {
-                sectorRepository.deleteById(id)
-            }
+            sectorRepository.findById(id)
+                ?: throw Exception("El id ${id} no existe en user")
+            sectorRepository.deleteById(id)
+
             return true
         }
         catch (ex: Exception){
