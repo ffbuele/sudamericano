@@ -1,8 +1,6 @@
 package com.project.sudamericano.service
 
-import com.project.sudamericano.dto.farmacyDto
-import com.project.sudamericano.dto.userDto
-import com.project.sudamericano.model.Farmacy
+import com.project.sudamericano.dto.UserDto
 import com.project.sudamericano.model.User
 import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,8 +29,8 @@ class UserService {
     }
 */
 
-    fun getByEmail (email: String?):List<User>?{
-        return userRepository.getListEmail (email)
+    fun getByStatus (status: String?):List<User>?{
+        return userRepository.getListStatus (status)
     }
 
     fun save(user: User): User{
@@ -45,12 +43,12 @@ class UserService {
                 ?: throw Exception("El phone no debe ser vacio")
             user.email?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El email no debe ser vacio")
+            user.username?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El username no debe ser vacio")
             user.password?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El password no debe ser vacio")
             user.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            user.username?.takeIf { it.trim().isNotEmpty() }
-                ?: throw Exception("El username no debe ser vacio")
             return userRepository.save(user)
         }
         catch (ex:Exception){
@@ -71,12 +69,12 @@ class UserService {
                 ?: throw Exception("El phone no debe ser vacio")
             user.email?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El email no debe ser vacio")
+            user.username?.takeIf { it.trim().isNotEmpty() }
+                    ?: throw Exception("El username no debe ser vacio")
             user.password?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El password no debe ser vacio")
             user.status?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
-            user.username?.takeIf { it.trim().isNotEmpty() }
-                    ?: throw Exception("El status no debe ser vacio")
 //            userRepository.findById(user.id)
 //                ?: throw Exception("El id ${user.id} en user no existe");
             return userRepository.save(user)
@@ -99,11 +97,11 @@ class UserService {
                 ?: throw Exception("El phone no debe ser vacio")
             user.email?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El email no debe ser vacio")
+            user.username?.takeIf { it.trim().isNotEmpty() }
+                ?: throw Exception("El username no debe ser vacio")
             user.password?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El password no debe ser vacio")
             user.status?.takeIf { it.trim().isNotEmpty() }
-                ?: throw Exception("El status no debe ser vacio")
-            user.username?.takeIf { it.trim().isNotEmpty() }
                 ?: throw Exception("El status no debe ser vacio")
             return userRepository.save(user)
         }
@@ -115,7 +113,7 @@ class UserService {
     }
 
     @Transactional
-    fun updateOtherStatus (userDto: userDto): String?{
+    fun updateOtherStatus (userDto: UserDto): String?{
         val rowsUpdate = userRepository.setOtherStatus(userDto.status, userDto.newStatus)
         return "${rowsUpdate} rows updated"
     }

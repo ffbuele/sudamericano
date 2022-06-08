@@ -1,6 +1,6 @@
 package com.project.sudamericano.service
 
-import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.FarmacyDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.repository.CompanyRepository
 import com.project.sudamericano.repository.FarmacyRepository
@@ -124,7 +124,7 @@ class FarmacyService {
     }
 
     @Transactional
-    fun updateOtherName (farmacyDto: farmacyDto): String?{
+    fun updateOtherName (farmacyDto: FarmacyDto): String?{
         val rowsUpdate=farmacyRepository.setOtherName(farmacyDto.name, farmacyDto.newName)
         return "${rowsUpdate} rows updated"
     }

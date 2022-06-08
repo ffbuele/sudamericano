@@ -1,6 +1,6 @@
 package com.project.sudamericano.dto
 
-class farmacyDto {
+class CompanyDto {
     var name:  String?=null
     var newName: String?=null
 }

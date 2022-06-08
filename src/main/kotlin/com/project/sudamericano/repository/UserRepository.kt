@@ -13,7 +13,7 @@ interface UserRepository: JpaRepository<User, Long> {
 
     @Query(nativeQuery=true)
     /*fun getListName (@Param("name") name:String?) : List <User>?*/
-    fun getListEmail (@Param("email") email:String?) : List <User>?
+    fun getListStatus (@Param("status") status:String?) : List <User>?
 
     @Modifying
     @Query(nativeQuery=true)

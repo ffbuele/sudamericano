@@ -1,8 +1,6 @@
 package com.project.sudamericano.controller
 
-import com.project.sudamericano.dto.farmacyDto
-import com.project.sudamericano.dto.sectorDto
-import com.project.sudamericano.model.Farmacy
+import com.project.sudamericano.dto.SectorDto
 import com.project.sudamericano.model.Sector
 import com.project.sudamericano.service.SectorService
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,7 +34,7 @@ class SectorController {
     }
 
     @PostMapping("/change/name")
-    fun updateOtherName (@RequestBody sectorDto: sectorDto): String?{
+    fun updateOtherName (@RequestBody sectorDto: SectorDto): String?{
         return sectorService.updateOtherName(sectorDto)
     }
 

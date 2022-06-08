@@ -1,9 +1,7 @@
 package com.project.sudamericano.controller
 
-import com.project.sudamericano.dto.companyDto
-import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.CompanyDto
 import com.project.sudamericano.model.Company
-import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.service.CompanyService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -36,7 +34,7 @@ class CompanyController {
     }
 
     @PostMapping("/change/name")
-    fun updateOtherName (@RequestBody companyDto: companyDto): String?{
+    fun updateOtherName (@RequestBody companyDto: CompanyDto): String?{
         return companyService.updateOtherName(companyDto)
     }
 

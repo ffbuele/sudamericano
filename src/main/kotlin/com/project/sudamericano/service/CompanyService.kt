@@ -1,9 +1,7 @@
 package com.project.sudamericano.service
 
-import com.project.sudamericano.dto.companyDto
-import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.CompanyDto
 import com.project.sudamericano.model.Company
-import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.repository.CompanyRepository
 import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -81,7 +79,7 @@ class CompanyService {
     }
 
     @Transactional
-    fun updateOtherName (companyDto: companyDto): String? {
+    fun updateOtherName (companyDto: CompanyDto): String? {
         val rowsUpdate = companyRepository.setOtherName(companyDto.name, companyDto.newName)
         return "${rowsUpdate} rows updated"
     }

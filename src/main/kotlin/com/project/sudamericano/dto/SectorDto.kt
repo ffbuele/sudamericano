@@ -1,6 +1,6 @@
 package com.project.sudamericano.dto
 
-class sectorDto {
+class SectorDto {
     var name:  String?=null
     var newName: String?=null
 }

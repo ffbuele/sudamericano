@@ -1,8 +1,6 @@
 package com.project.sudamericano.controller
 
-import com.project.sudamericano.dto.farmacyDto
-import com.project.sudamericano.dto.userDto
-import com.project.sudamericano.model.Farmacy
+import com.project.sudamericano.dto.UserDto
 import com.project.sudamericano.model.User
 import com.project.sudamericano.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,9 +28,9 @@ class UserController {
         return userService.getByName(name)
     }*/
 
-    @GetMapping("/email/{email}")
-    fun listByEmail (@PathVariable("email") email: String): List<User>?{
-        return userService.getByEmail(email)
+    @GetMapping("/status/{status}")
+    fun listByStatus (@PathVariable("status") status: String): List<User>?{
+        return userService.getByStatus(status)
     }
 
     @PostMapping
@@ -41,7 +39,7 @@ class UserController {
     }
 
     @PostMapping("/change/status")
-    fun updateOtherStatus (@RequestBody userDto: userDto): String?{
+    fun updateOtherStatus (@RequestBody userDto: UserDto): String?{
         return userService.updateOtherStatus (userDto)
     }
 

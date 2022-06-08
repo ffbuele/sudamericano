@@ -1,6 +1,6 @@
 package com.project.sudamericano.controller
 
-import com.project.sudamericano.dto.farmacyDto
+import com.project.sudamericano.dto.FarmacyDto
 import com.project.sudamericano.model.Farmacy
 import com.project.sudamericano.service.FarmacyService
 import org.springframework.beans.factory.annotation.Autowired
@@ -35,7 +35,7 @@ class FarmacyController {
     }
 
     @PostMapping("/change/name")
-    fun updateOtherName (@RequestBody farmacyDto: farmacyDto): String?{
+    fun updateOtherName (@RequestBody farmacyDto: FarmacyDto): String?{
         return farmacyService.updateOtherName(farmacyDto)
     }
 
