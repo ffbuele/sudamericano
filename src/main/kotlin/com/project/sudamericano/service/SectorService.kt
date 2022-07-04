@@ -1,6 +1,5 @@
 package com.project.sudamericano.service
 
-import com.project.sudamericano.dto.SectorDto
 import com.project.sudamericano.model.Sector
 import com.project.sudamericano.repository.SectorRepository
 import com.project.sudamericano.repository.UserRepository
@@ -77,12 +76,6 @@ class SectorService {
             throw ResponseStatusException(
                 HttpStatus.NOT_FOUND, ex.message, ex)
         }
-    }
-
-    @Transactional
-    fun updateOtherName (sectorDto: SectorDto): String?{
-        val rowsUpdate = sectorRepository.setOtherName(sectorDto.name, sectorDto.newName)
-        return "${rowsUpdate} rows updated"
     }
 
     fun delete(id: Long): Boolean{

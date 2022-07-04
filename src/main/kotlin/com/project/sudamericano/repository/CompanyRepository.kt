@@ -14,7 +14,4 @@ interface CompanyRepository: JpaRepository<Company, Long> {
     @Query(nativeQuery=true)
     fun getListName (@Param("name") name:String?) : List <Company>?
 
-    @Modifying
-    @Query(nativeQuery=true)
-    fun setOtherName (@Param("name")  name:String?, @Param("newName")  newName:String?) : Integer?
 }

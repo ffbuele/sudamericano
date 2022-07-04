@@ -1,6 +1,5 @@
 package com.project.sudamericano.controller
 
-import com.project.sudamericano.dto.SectorDto
 import com.project.sudamericano.model.Sector
 import com.project.sudamericano.service.SectorService
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,11 +30,6 @@ class SectorController {
     @PostMapping
     fun save (@RequestBody sector: Sector): Sector{
         return sectorService.save(sector)
-    }
-
-    @PostMapping("/change/name")
-    fun updateOtherName (@RequestBody sectorDto: SectorDto): String?{
-        return sectorService.updateOtherName(sectorDto)
     }
 
     @PutMapping

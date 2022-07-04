@@ -13,8 +13,4 @@ interface SectorRepository: JpaRepository<Sector, Long> {
 
     @Query(nativeQuery=true)
     fun getListName (@Param("name") name:String?) : List <Sector>?
-
-    @Modifying
-    @Query(nativeQuery=true)
-    fun setOtherName (@Param("name")  name:String?, @Param("newName")  newName:String?) : Integer?
 }

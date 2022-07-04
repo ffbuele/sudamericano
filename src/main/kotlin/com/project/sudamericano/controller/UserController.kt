@@ -1,6 +1,5 @@
 package com.project.sudamericano.controller
 
-import com.project.sudamericano.dto.UserDto
 import com.project.sudamericano.model.User
 import com.project.sudamericano.service.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -36,11 +35,6 @@ class UserController {
     @PostMapping
     fun save (@RequestBody user: User): User{
         return userService.save(user)
-    }
-
-    @PostMapping("/change/status")
-    fun updateOtherStatus (@RequestBody userDto: UserDto): String?{
-        return userService.updateOtherStatus (userDto)
     }
 
     @PutMapping

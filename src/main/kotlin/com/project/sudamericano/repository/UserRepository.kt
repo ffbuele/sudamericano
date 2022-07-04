@@ -14,8 +14,4 @@ interface UserRepository: JpaRepository<User, Long> {
     @Query(nativeQuery=true)
     /*fun getListName (@Param("name") name:String?) : List <User>?*/
     fun getListStatus (@Param("status") status:String?) : List <User>?
-
-    @Modifying
-    @Query(nativeQuery=true)
-    fun setOtherStatus (@Param("status")  status:String?, @Param("newStatus")  newStatus:String?) : Integer?
 }

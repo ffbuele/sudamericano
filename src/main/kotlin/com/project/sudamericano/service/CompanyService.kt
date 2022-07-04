@@ -1,6 +1,5 @@
 package com.project.sudamericano.service
 
-import com.project.sudamericano.dto.CompanyDto
 import com.project.sudamericano.model.Company
 import com.project.sudamericano.repository.CompanyRepository
 import com.project.sudamericano.repository.UserRepository
@@ -78,11 +77,6 @@ class CompanyService {
         }
     }
 
-    @Transactional
-    fun updateOtherName (companyDto: CompanyDto): String? {
-        val rowsUpdate = companyRepository.setOtherName(companyDto.name, companyDto.newName)
-        return "${rowsUpdate} rows updated"
-    }
 
     fun delete(id: Long): Boolean{
         try {

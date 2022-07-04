@@ -1,12 +1,10 @@
 package com.project.sudamericano.service
 
-import com.project.sudamericano.dto.UserDto
 import com.project.sudamericano.model.User
 import com.project.sudamericano.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.server.ResponseStatusException
 
 @Service
@@ -22,12 +20,6 @@ class UserService {
     fun getById (id:Long?): User?{
         return userRepository.findById(id)
     }
-
-/*
-    fun getByName (name: String?):List<User>?{
-        return userRepository.getListName (name)
-    }
-*/
 
     fun getByStatus (status: String?):List<User>?{
         return userRepository.getListStatus (status)
@@ -112,12 +104,6 @@ class UserService {
         }
     }
 
-    @Transactional
-    fun updateOtherStatus (userDto: UserDto): String?{
-        val rowsUpdate = userRepository.setOtherStatus(userDto.status, userDto.newStatus)
-        return "${rowsUpdate} rows updated"
-    }
-
     fun delete(id: Long): Boolean{
         try {
             userRepository.findById(id)
@@ -131,5 +117,52 @@ class UserService {
                 HttpStatus.NOT_FOUND, ex.message, ex
             )
         }
+    }
+
+    fun validateSerialNumber (serial: String?): Boolean? {
+        serial.takeIf { !it?.trim().isNullOrEmpty() }
+            ?: throw Exception()
+        if (serial?.substring(0, 3).equals("786"))
+            return true
+        return false
+    }
+
+    // VALIDACION DE CEDULA
+
+    fun product (iq: Int, dig: Int): Int {
+        val response = iq * dig
+        if (response >= 10)
+            return response - 9
+        return response
+    }
+
+    fun sumaValores (nui: String): Int {
+        var sum: Int = 0
+        for ( i in 0..8 ) {
+            val iq = if( i%2 ==0 ) 2 else 1
+            sum  += product( iq, Integer.parseInt( nui[i].toString() ))
+        }
+        return sum
+    }
+
+    fun findLastDig (sum: Int): Int {            //21
+        val div: Int = sum /10                          //0
+        val decenaSuperior: Int = ( div + 1 ) * 10      //1 * 10 = 10
+        var response: Int = decenaSuperior - sum        //10 - 0 = 10
+        if (response == 10)
+            response = 0                                // si es 10 sera 0
+        return response
+    }
+
+    fun validarCedula (cedula: String): Boolean {   //1401061542
+        val sum = sumaValores( cedula )   // valor de la suma del string
+        val lastDig = findLastDig(sum)    // calculo de ultimo dig
+
+        val lastDigCedString = cedula.last()   //ultimo digito
+        val lastDigCedInt = Integer.parseInt(lastDigCedString.toString())    //cambiado a int
+
+        if(lastDigCedInt == lastDig)
+            return true
+        return false
     }
 }
