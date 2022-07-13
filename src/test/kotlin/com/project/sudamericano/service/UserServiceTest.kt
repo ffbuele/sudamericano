@@ -104,7 +104,7 @@ class UserServiceTest {
 //
 //    @Test
 //    fun validarCedulaIsValida(){
-//        val response = userService.validarCedula("0107466153")
-//        Assertions.assertEquals(true, response)
+//        val response = userService.validarCedula("0107466152")
+//        Assertions.assertEquals(false, response)
 //    }
 }
