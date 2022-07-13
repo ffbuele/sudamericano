@@ -15,36 +15,74 @@ import java.io.File
 @SpringBootTest
 class UserServiceTest {
 
-//    @Autowired
-//    lateinit var userService: UserService
-
-    @InjectMocks
+    @Autowired
     lateinit var userService: UserService
 
-    @Mock
-    lateinit var userRepository: UserRepository
-
-    val jsonString = File("./src/test/resources/user.json").readText(Charsets.UTF_8)
-    val userMock = Gson().fromJson(jsonString, User::class.java)
-
     @Test
-    fun saveProduct(){
-        // PAra actualizar
-        // LLAVES  FORENEAS
-        // Mockito.`when`(userRepository.findById(productMock.id)).thenReturn(productMock)
-        Mockito.`when`(userRepository.save(Mockito.any(User::class.java))).thenReturn(userMock)
-        val response = userService.save(userMock)
-        Assertions.assertEquals(response?.id, userMock.id)
+    fun productWhentLessThanTen() {
+        val response = userService.product(1, 7)
+        Assertions.assertEquals(7, response)
     }
 
     @Test
-    fun saveProductFailed(){
-        Assertions.assertThrows(Exception::class.java) {
-            userMock.apply { name = " " }
-            Mockito.`when`(userRepository.save(Mockito.any(User::class.java))).thenReturn(userMock)
-            userService.save(userMock)
-        }
+    fun productWhentMajorThanTen() {
+        val response = userService.product(2, 7)
+        Assertions.assertEquals(5, response)
     }
+//
+    @Test
+    fun validarSumaNui(){
+        val response = userService.sumaValores("140106154")
+        Assertions.assertEquals(28, response)
+    }
+
+    @Test
+    fun validarDecenaSuperiorCuandoNoEsCero(){
+        val response = userService.findLastDig(25)
+        Assertions.assertEquals(5, response)
+    }
+
+    @Test
+    fun validarDecenaSuperiorCuandoEsCero(){
+        val response = userService.findLastDig(10)
+        Assertions.assertEquals(0, response)
+    }
+
+    @Test
+    fun validarCedulaIsValida(){
+        val response = userService.validarCedula("0107466152")
+        Assertions.assertEquals(false, response)
+    }
+}
+
+
+//    @InjectMocks
+//    lateinit var userService: UserService
+//
+//    @Mock
+//    lateinit var userRepository: UserRepository
+//
+//    val jsonString = File("./src/test/resources/user.json").readText(Charsets.UTF_8)
+//    val userMock = Gson().fromJson(jsonString, User::class.java)
+//
+//    @Test
+//    fun saveProduct(){
+//        // PAra actualizar
+//        // LLAVES  FORENEAS
+//        // Mockito.`when`(userRepository.findById(productMock.id)).thenReturn(productMock)
+//        Mockito.`when`(userRepository.save(Mockito.any(User::class.java))).thenReturn(userMock)
+//        val response = userService.save(userMock)
+//        Assertions.assertEquals(response?.id, userMock.id)
+//    }
+//
+//    @Test
+//    fun saveProductFailed(){
+//        Assertions.assertThrows(Exception::class.java) {
+//            userMock.apply { name = " " }
+//            Mockito.`when`(userRepository.save(Mockito.any(User::class.java))).thenReturn(userMock)
+//            userService.save(userMock)
+//        }
+//    }
 
 //    @Test
 //    fun validateSerialIsValid() {
@@ -72,39 +110,3 @@ class UserServiceTest {
 //        }
 //    }
 //
-//    @Test
-//    fun productWhentLessThanTen() {
-//        val response = userService.product(1, 7)
-//        Assertions.assertEquals(7, response)
-//    }
-//
-//    @Test
-//    fun productWhentMajorThanTen() {
-//        val response = userService.product(2, 7)
-//        Assertions.assertEquals(5, response)
-//    }
-//
-//    @Test
-//    fun validarSumaNui(){
-//        val response = userService.sumaValores("140106154")
-//        Assertions.assertEquals(28, response)
-//    }
-//
-//    @Test
-//    fun validarDecenaSuperiorCuandoNoEsCero(){
-//        val response = userService.findLastDig(25)
-//        Assertions.assertEquals(5, response)
-//    }
-//
-//    @Test
-//    fun validarDecenaSuperiorCuandoEsCero(){
-//        val response = userService.findLastDig(10)
-//        Assertions.assertEquals(0, response)
-//    }
-//
-//    @Test
-//    fun validarCedulaIsValida(){
-//        val response = userService.validarCedula("0107466152")
-//        Assertions.assertEquals(false, response)
-//    }
-}
